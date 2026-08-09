@@ -17,6 +17,12 @@ venv/
 env/
 ENV/
 
+# Downloaded source data, model weights, and generated deliverables
+data/raw/
+data/interim/
+models/
+outputs/
+
 # Test, type-checking, and linting caches
 .coverage
 .coverage.*
