@@ -1,73 +1,79 @@
-"""Command-line entry point for the rooftop-detection pipeline."""
+"""Click command-line entry point for the rooftop-detection pipeline."""
 
 from __future__ import annotations
 
-import argparse
 from pathlib import Path
+
+import click
 
 from rooftop_detection import __version__
 
 
-def build_parser() -> argparse.ArgumentParser:
-    """Build the CLI parser without importing heavyweight geospatial or ML dependencies."""
-    parser = argparse.ArgumentParser(
-        prog="rooftop-detection",
-        description="Detect and describe roofs from georeferenced aerial imagery.",
-    )
-    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
+@click.group()
+@click.version_option(__version__)
+def cli() -> None:
+    """Detect and describe roofs from georeferenced aerial imagery."""
 
-    commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("acquire", help="Download or register a configured imagery source.")
-    prepare = commands.add_parser(
-        "prepare", help="Create a self-contained GeoTIFF from source imagery and georeferencing."
-    )
-    prepare.add_argument(
-        "--config", required=True, type=Path, help="Study-area TOML configuration."
-    )
-    prepare.add_argument(
-        "--output",
-        type=Path,
-        help="Destination GeoTIFF (defaults to data/interim/<study-area-id>.tif).",
-    )
-    detect = commands.add_parser(
-        "detect", help="Run SAM2 roof segmentation and write geospatial results."
-    )
-    detect.add_argument("--config", required=True, type=Path, help="Study-area TOML configuration.")
-    detect.add_argument(
-        "--buildings",
-        type=Path,
-        default=Path("data/input/buildings.geojson"),
-        help="Input targets.",
-    )
-    detect.add_argument(
-        "--output", type=Path, default=Path("outputs/roof_attributes.json"), help="Results JSON."
-    )
-    detect.add_argument(
-        "--overlays-dir", type=Path, default=Path("outputs/overlays"), help="Review PNG directory."
-    )
-    commands.add_parser("run", help="Run the configured end-to-end pipeline.")
-    return parser
+
+@cli.command()
+@click.option("--config", type=click.Path(path_type=Path), required=True, help="Study-area TOML.")
+@click.option(
+    "--output",
+    type=click.Path(path_type=Path),
+    help="Destination GeoTIFF (defaults to data/interim/<study-area-id>.tif).",
+)
+def prepare(config: Path, output: Path | None) -> None:
+    """Create a self-contained GeoTIFF from imagery and its world file."""
+    from rooftop_detection.prepare import run_prepare
+
+    run_prepare(config, output)
+
+
+@cli.command()
+@click.option("--config", type=click.Path(path_type=Path), required=True, help="Study-area TOML.")
+@click.option(
+    "--buildings",
+    type=click.Path(path_type=Path),
+    default=Path("data/input/buildings.geojson"),
+    show_default=True,
+    help="Input building targets.",
+)
+@click.option(
+    "--output",
+    type=click.Path(path_type=Path),
+    default=Path("outputs/roof_attributes.json"),
+    show_default=True,
+    help="Results JSON.",
+)
+@click.option(
+    "--overlays-dir",
+    type=click.Path(path_type=Path),
+    default=Path("outputs/overlays"),
+    show_default=True,
+    help="Review PNG directory.",
+)
+def detect(config: Path, buildings: Path, output: Path, overlays_dir: Path) -> None:
+    """Run local SAM2 roof segmentation and write geospatial results."""
+    from rooftop_detection.detect import run_detect
+
+    run_detect(config, buildings, output, overlays_dir)
+
+
+@cli.command()
+def acquire() -> None:
+    """Reserve the imagery acquisition command."""
+    raise click.ClickException("The 'acquire' command has not been implemented yet.")
+
+
+@cli.command()
+def run() -> None:
+    """Reserve the end-to-end command."""
+    raise click.ClickException("The 'run' command has not been implemented yet.")
 
 
 def main() -> None:
-    """Run the CLI.
-
-    Heavy geospatial and ML dependencies are imported only by the command that
-    needs them, so basic CLI help remains fast and dependency-light.
-    """
-    parser = build_parser()
-    args = parser.parse_args()
-    if args.command == "prepare":
-        from rooftop_detection.prepare import run_prepare
-
-        run_prepare(args.config, args.output)
-        return
-    if args.command == "detect":
-        from rooftop_detection.detect import run_detect
-
-        run_detect(args.config, args.buildings, args.output, args.overlays_dir)
-        return
-    parser.error(f"The '{args.command}' command has not been implemented yet.")
+    """Run the Click command group."""
+    cli()
 
 
 if __name__ == "__main__":

@@ -8,30 +8,28 @@ version = "0.1.0"
 description = "Geospatial rooftop detection and attribute extraction from open imagery."
 requires-python = ">=3.14"
 dependencies = [
-    "geopandas>=1.0",
-    "huggingface-hub>=0.26",
-    "numpy>=1.26",
-    "opencv-python-headless>=4.10",
-    "pyproj>=3.6",
-    "rasterio>=1.4",
-    "safetensors>=0.5",
-    "shapely>=2.0",
-    "torch==2.13.0+rocm7.2",
-    "torchvision==0.28.0+rocm7.2",
-    # Make the ROCm-only transitive dependency a project requirement so uv
-    # resolves it from the explicit PyTorch ROCm index.
-    "triton-rocm==3.7.1",
-    "transformers>=4.48",
+  "click>=8.1",
+  "geopandas>=1.0",
+  "huggingface-hub>=0.26",
+  "numpy>=1.26",
+  "opencv-python-headless>=4.10",
+  "pyproj>=3.6",
+  "rasterio>=1.4",
+  "safetensors>=0.5",
+  "shapely>=2.0",
+  "torch==2.13.0+rocm7.2",
+  "torchvision==0.28.0+rocm7.2",
+  # Make the ROCm-only transitive dependency a project requirement so uv
+  # resolves it from the explicit PyTorch ROCm index.
+  "triton-rocm==3.7.1",
+  "transformers>=4.48",
 ]
 
 [project.scripts]
 rooftop-detection = "rooftop_detection.cli:main"
 
 [dependency-groups]
-dev = [
-    "ipython>=8.0",
-    "ruff>=0.8",
-]
+dev = ["ipython>=8.0", "ruff>=0.8"]
 
 [tool.uv]
 # PyTorch's ROCm wheels are not on PyPI. `uv sync` uses this explicit index
