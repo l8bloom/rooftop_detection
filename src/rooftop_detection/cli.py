@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 from rooftop_detection import __version__
 
@@ -17,7 +18,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("acquire", help="Download or register a configured imagery source.")
-    commands.add_parser("prepare", help="Create georeferenced model chips from imagery and footprints.")
+    prepare = commands.add_parser(
+        "prepare", help="Create a self-contained GeoTIFF from source imagery and georeferencing."
+    )
+    prepare.add_argument("--config", required=True, type=Path, help="Study-area TOML configuration.")
+    prepare.add_argument(
+        "--output",
+        type=Path,
+        help="Destination GeoTIFF (defaults to data/interim/<study-area-id>.tif).",
+    )
     commands.add_parser("detect", help="Run roof segmentation and write geospatial results.")
     commands.add_parser("run", help="Run the configured end-to-end pipeline.")
     return parser
@@ -26,11 +35,16 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     """Run the CLI.
 
-    Pipeline commands are registered now and will be wired to their implementation
-    modules as each stage is added.
+    Heavy geospatial and ML dependencies are imported only by the command that
+    needs them, so basic CLI help remains fast and dependency-light.
     """
     parser = build_parser()
     args = parser.parse_args()
+    if args.command == "prepare":
+        from rooftop_detection.prepare import run_prepare
+
+        run_prepare(args.config, args.output)
+        return
     parser.error(f"The '{args.command}' command has not been implemented yet.")
 
 

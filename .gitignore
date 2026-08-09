@@ -17,6 +17,9 @@ venv/
 env/
 ENV/
 
+# Local shell environment
+.envrc
+
 # Downloaded source data, model weights, and generated deliverables
 data/raw/
 data/interim/

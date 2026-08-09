@@ -16,8 +16,11 @@ dependencies = [
     "rasterio>=1.4",
     "safetensors>=0.5",
     "shapely>=2.0",
-    "torch",
-    "torchvision",
+    "torch==2.13.0+rocm7.2",
+    "torchvision==0.28.0+rocm7.2",
+    # Make the ROCm-only transitive dependency a project requirement so uv
+    # resolves it from the explicit PyTorch ROCm index.
+    "triton-rocm==3.7.1",
     "transformers>=4.48",
 ]
 
@@ -32,7 +35,7 @@ dev = [
 
 [tool.uv]
 # PyTorch's ROCm wheels are not on PyPI. `uv sync` uses this explicit index
-# only for torch and torchvision; all other dependencies come from PyPI.
+# only for the ROCm PyTorch stack; all other dependencies come from PyPI.
 
 [[tool.uv.index]]
 name = "pytorch-rocm"
@@ -42,6 +45,7 @@ explicit = true
 [tool.uv.sources]
 torch = { index = "pytorch-rocm" }
 torchvision = { index = "pytorch-rocm" }
+triton-rocm = { index = "pytorch-rocm" }
 
 [tool.ruff]
 line-length = 100
