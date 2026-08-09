@@ -1,6 +1,6 @@
 # Rooftop detection
 
-This component extracts imagery-derived roof outlines for ten Vienna buildings. It combines the City of Vienna's 2024 true orthophoto (15 cm GSD) with official LOD0.4 building-part footprints and local `facebook/sam2.1-hiera-large` segmentation.
+This component extracts imagery-derived roof outlines for ten Vienna buildings. It combines the City of Vienna's 2024 true orthophoto (15 cm GSD) with official LOD0.4 building-part footprints and local [`facebook/sam2.1-hiera-large`](https://huggingface.co/facebook/sam2.1-hiera-large) segmentation.
 
 ## Run
 
