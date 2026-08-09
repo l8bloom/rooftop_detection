@@ -35,12 +35,10 @@ def world_file_to_affine(world_file: WorldFileTransform):
     return Affine(
         world_file.pixel_width,
         world_file.column_rotation,
-        world_file.upper_left_x_center
-        - (world_file.pixel_width + world_file.column_rotation) / 2,
+        world_file.upper_left_x_center - (world_file.pixel_width + world_file.column_rotation) / 2,
         world_file.row_rotation,
         world_file.pixel_height,
-        world_file.upper_left_y_center
-        - (world_file.row_rotation + world_file.pixel_height) / 2,
+        world_file.upper_left_y_center - (world_file.row_rotation + world_file.pixel_height) / 2,
     )
 
 

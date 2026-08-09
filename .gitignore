@@ -24,7 +24,10 @@ ENV/
 data/raw/
 data/interim/
 models/
-outputs/
+outputs/*
+!outputs/roof_attributes.json
+!outputs/overlays/
+!outputs/overlays/*.png
 
 # Test, type-checking, and linting caches
 .coverage
