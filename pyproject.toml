@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rooftop-detection"
+version = "0.1.0"
+description = "Geospatial rooftop detection and attribute extraction from open imagery."
+requires-python = ">=3.14"
+dependencies = [
+    "geopandas>=1.0",
+    "huggingface-hub>=0.26",
+    "numpy>=1.26",
+    "opencv-python-headless>=4.10",
+    "pyproj>=3.6",
+    "rasterio>=1.4",
+    "safetensors>=0.5",
+    "shapely>=2.0",
+    "torch",
+    "torchvision",
+    "transformers>=4.48",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=8.0",
+    "ruff>=0.8",
+]
+
+[tool.uv]
+# PyTorch's ROCm wheels are not on PyPI. `uv sync` uses this explicit index
+# only for torch and torchvision; all other dependencies come from PyPI.
+
+[[tool.uv.index]]
+name = "pytorch-rocm"
+url = "https://download.pytorch.org/whl/rocm7.2"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-rocm" }
+torchvision = { index = "pytorch-rocm" }
