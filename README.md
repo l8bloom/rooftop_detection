@@ -33,6 +33,8 @@ Example detection for `vienna-c2-5521477`:
 
 Each result contains SAM's predicted IoU plus footprint precision, coverage and IoU. These are heuristic quality signals, not calibrated probabilities. A result is marked `review_required` when it leaks substantially, misses too much of the source footprint, has an implausible area ratio, or has weak SAM quality.
 
+See the [per-building result confidence table](docs/results.md) for all ten outputs, their quality metrics, linked overlays and manual-review decisions.
+
 ## Data and model provenance
 
 - Imagery: City of Vienna Orthofoto 2024, tile 35/4, 15 cm, EPSG:31256, CC BY 4.0. [Original ZIP](https://www.wien.gv.at/ma41datenviewer/downloads/geodaten/op_img/35_4_op_2024.zip).
