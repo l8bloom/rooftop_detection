@@ -1,0 +1,18 @@
+[study_area]
+id = "vienna_orthophoto_2024_35_4_c2"
+description = "500 m by 500 m central Vienna study area selected from orthophoto tile 35/4."
+crs = "EPSG:31256"
+min_x_m = 3500.0
+min_y_m = 341500.0
+max_x_m = 4000.0
+max_y_m = 342000.0
+
+[imagery]
+provider = "City of Vienna"
+dataset = "Orthofoto 2024 Wien"
+acquisition_dates = ["2024-03-19", "2024-03-20", "2024-03-29", "2024-04-12"]
+license = "CC BY 4.0"
+source_crs = "EPSG:31256"
+ground_sampling_distance_m = 0.15
+image_path = "data/raw/orthophoto_2024_35_4/35_4_op_2024.jpg"
+world_file_path = "data/raw/orthophoto_2024_35_4/35_4_op_2024.jgw"
