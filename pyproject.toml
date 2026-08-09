@@ -29,7 +29,7 @@ dependencies = [
 rooftop-detection = "rooftop_detection.cli:main"
 
 [dependency-groups]
-dev = ["ipython>=8.0", "ruff>=0.8"]
+dev = ["ipython>=8.0", "pytest>=8.0", "ruff>=0.8"]
 
 [tool.uv]
 # PyTorch's ROCm wheels are not on PyPI. `uv sync` uses this explicit index

@@ -60,15 +60,39 @@ def detect(config: Path, buildings: Path, output: Path, overlays_dir: Path) -> N
 
 
 @cli.command()
-def acquire() -> None:
-    """Reserve the imagery acquisition command."""
-    raise click.ClickException("The 'acquire' command has not been implemented yet.")
+@click.option("--config", type=click.Path(path_type=Path), required=True, help="Study-area TOML.")
+@click.option(
+    "--buildings",
+    type=click.Path(path_type=Path),
+    default=Path("data/input/buildings.geojson"),
+    show_default=True,
+)
+@click.option(
+    "--output",
+    type=click.Path(path_type=Path),
+    default=Path("outputs/roof_attributes.json"),
+    show_default=True,
+)
+@click.option(
+    "--overlays-dir",
+    type=click.Path(path_type=Path),
+    default=Path("outputs/overlays"),
+    show_default=True,
+)
+def run(config: Path, buildings: Path, output: Path, overlays_dir: Path) -> None:
+    """Prepare the GeoTIFF when needed, then detect every configured roof."""
+    import tomllib
 
+    from rooftop_detection.detect import run_detect
+    from rooftop_detection.prepare import run_prepare
 
-@cli.command()
-def run() -> None:
-    """Reserve the end-to-end command."""
-    raise click.ClickException("The 'run' command has not been implemented yet.")
+    configuration = tomllib.loads(config.read_text())
+    study_area = configuration["study_area"]
+    imagery = configuration["imagery"]
+    prepared_path = Path(imagery.get("prepared_path", f"data/interim/{study_area['id']}.tif"))
+    if not prepared_path.exists():
+        run_prepare(config, prepared_path)
+    run_detect(config, buildings, output, overlays_dir)
 
 
 def main() -> None:

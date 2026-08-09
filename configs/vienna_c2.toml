@@ -16,3 +16,4 @@ source_crs = "EPSG:31256"
 ground_sampling_distance_m = 0.15
 image_path = "data/raw/orthophoto_2024_35_4/35_4_op_2024.jpg"
 world_file_path = "data/raw/orthophoto_2024_35_4/35_4_op_2024.jgw"
+prepared_path = "data/interim/vienna_orthophoto_2024_35_4_c2.tif"
