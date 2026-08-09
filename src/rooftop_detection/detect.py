@@ -76,16 +76,14 @@ def _crop_for_building(source, geometry, transform: Affine, padding_m: float):
     return image, box, left, top
 
 
-def _write_overlay(image: Image.Image, mask: np.ndarray, box, output_path: Path) -> None:
-    """Write a review image; colours are debug annotations, never model input."""
+def _write_overlay(image: Image.Image, mask: np.ndarray, output_path: Path) -> None:
+    """Write a review image; colours are never part of the model input."""
     base = np.asarray(image).copy()
     tint = base.copy()
     tint[mask.astype(bool)] = (255, 30, 30)
     rendered = cv2.addWeighted(base, 0.68, tint, 0.32, 0)
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(rendered, contours, -1, (255, 255, 0), 2)
-    x1, y1, x2, y2 = (round(value) for value in box[0][0])
-    cv2.rectangle(rendered, (x1, y1), (x2, y2), (0, 255, 255), 2)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     cv2.imwrite(str(output_path), cv2.cvtColor(rendered, cv2.COLOR_RGB2BGR))
 
@@ -138,7 +136,7 @@ def run_detect(
             wgs84_polygon = transform(to_wgs84, polygon)
             building_id = building["building_id"]
             mask = masks[best_index].numpy().astype(np.uint8)
-            _write_overlay(image, mask, box, overlays_dir / f"{building_id}.png")
+            _write_overlay(image, mask, overlays_dir / f"{building_id}.png")
             records.append(
                 {
                     "building_id": building_id,
