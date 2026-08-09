@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import json
+import tomllib
 from pathlib import Path
 
 import cv2
 import geopandas as gpd
 import numpy as np
 import rasterio
-import tomllib
 import torch
 from affine import Affine
 from PIL import Image
