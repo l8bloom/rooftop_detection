@@ -15,7 +15,7 @@ uv run rooftop-detection detect --config configs/vienna_c2.toml
 - `outputs/roof_attributes.json` — WGS84 roof geometries, native-metre areas, provenance, and confidence.
 - `outputs/overlays/*.png` — review imagery. Red is the mask and yellow is its vector boundary.
 
-The source JPEG/JGW are intentionally ignored; see `data/README.md` for acquisition. The SAM2 model is loaded from the local Hugging Face cache, so inference uses no network. On this host use ROCm device 0 (the 24 GiB Radeon RX 7900 XTX).
+The source JPEG/JGW are committed so reviewers can inspect the exact inputs and reproduce GeoTIFF preparation without an additional download. The SAM2 model is loaded from the local Hugging Face cache, so inference uses no network. On this host use ROCm device 0 (the 24 GiB Radeon RX 7900 XTX).
 
 ## Scope and limits
 

@@ -21,7 +21,10 @@ ENV/
 .envrc
 
 # Downloaded source data, model weights, and generated deliverables
-data/raw/
+data/raw/*
+!data/raw/orthophoto_2024_35_4/
+!data/raw/orthophoto_2024_35_4/35_4_op_2024.jpg
+!data/raw/orthophoto_2024_35_4/35_4_op_2024.jgw
 data/interim/
 models/
 outputs/*
