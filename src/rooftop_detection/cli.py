@@ -1,4 +1,13 @@
-"""Click command-line entry point for the rooftop-detection pipeline."""
+"""Main CLI entry point for the rooftop-detection pipeline.
+
+This command group exposes three subcommands:
+
+* ``prepare`` – Create a self‑contained GeoTIFF from imagery and its world file.
+* ``detect`` – Run local SAM2 roof segmentation and write geospatial results.
+* ``run`` – Prepare the GeoTIFF when needed, then detect every configured roof.
+
+The ``--help`` option prints this description followed by a list of the subcommands and the options they accept. This verbose help is intended to aid users who want a quick reference to all commands and flags.
+"""
 
 from __future__ import annotations
 
