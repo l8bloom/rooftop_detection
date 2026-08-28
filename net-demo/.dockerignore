@@ -17,5 +17,3 @@ tests/**/*.trx
 *.cache
 *.vs
 .vs/
-*.sln
-*.csproj
