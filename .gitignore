@@ -57,3 +57,7 @@ ipython_config.py
 
 # Operating-system files
 .DS_Store
+
+# .NET build output
+bin/
+obj/
