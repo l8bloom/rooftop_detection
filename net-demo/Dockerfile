@@ -1,9 +1,9 @@
 # Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
-COPY net-demo/NetDemo.sln .
-COPY net-demo/src/NetDemo/NetDemo.csproj ./src/NetDemo/
-COPY net-demo/tests/NetDemo.Tests/NetDemo.Tests.csproj ./tests/NetDemo.Tests/
+COPY NetDemo.sln .
+COPY src/NetDemo/NetDemo.csproj ./src/NetDemo/
+COPY tests/NetDemo.Tests/NetDemo.Tests.csproj ./tests/NetDemo.Tests/
 RUN dotnet restore
 COPY . .
 RUN dotnet publish src/NetDemo/NetDemo.csproj -c Release -o out

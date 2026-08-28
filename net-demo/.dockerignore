@@ -2,8 +2,6 @@ bin
 obj
 **/*.user
 **/*.suo
-**/*.sln
-**/*.csproj
 **/*.md
 **/*.log
 **/packages
