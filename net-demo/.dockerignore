@@ -1,0 +1,21 @@
+# Build artifacts
+**/bin
+**/obj
+
+# Test results
+**/TestResults
+
+# .NET
+*.user
+*.suo
+*.csproj.user
+
+# IDE
+*.vs
+*.idea
+
+# OS
+.DS_Store
+
+# Git
+.git
