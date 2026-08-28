@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.312
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EF3E}") = "NetDemo", "src/NetDemo/NetDemo.csproj", "{D1B8F7C2-6E5C-4A1D-A9C5-3B5A6E2D8F12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EF3E}") = "NetDemo.Tests", "tests/NetDemo.Tests/NetDemo.Tests.csproj", "{E2C4D9F1-7B2A-4E3F-9A1D-5B7C8D9E0F1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1B8F7C2-6E5C-4A1D-A9C5-3B5A6E2D8F12}.Debug|Any CPU = Debug|Any CPU
+		{D1B8F7C2-6E5C-4A1D-A9C5-3B5A6E2D8F12}.Release|Any CPU = Release|Any CPU
+		{E2C4D9F1-7B2A-4E3F-9A1D-5B7C8D9E0F1A}.Debug|Any CPU = Debug|Any CPU
+		{E2C4D9F1-7B2A-4E3F-9A1D-5B7C8D9E0F1A}.Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = preSolution
+	EndGlobalSection
+EndGlobal

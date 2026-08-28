@@ -1,0 +1,5 @@
+src/**/bin
+src/**/obj
+src/**/publish
+tests/**/bin
+tests/**/obj
