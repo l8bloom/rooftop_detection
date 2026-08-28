@@ -19,7 +19,7 @@ public class HealthEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         var client = _factory.CreateClient();
         var response = await client.GetAsync("/health");
         response.EnsureSuccessStatusCode();
-        var json = await response.Content.ReadFromJsonAsync<dynamic>();
-        Assert.Equal("healthy", (string)json.status);
+        var json = await response.Content.ReadFromJsonAsync<Dictionary<string,string>>();
+        Assert.Equal("healthy", json["status"]);
     }
 }
