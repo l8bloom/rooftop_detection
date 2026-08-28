@@ -1,0 +1,15 @@
+bin
+obj
+**/*.user
+**/*.suo
+**/*.sln
+**/*.csproj
+**/*.md
+**/*.log
+**/packages
+**/TestResults
+**/test_results
+**/coverage
+**/artifacts
+**/.vs
+**/.git
