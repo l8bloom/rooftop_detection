@@ -1,0 +1,15 @@
+bin
+obj
+**/*.csproj
+*.sln
+*.csproj
+*.sln
+*.lock
+*.user
+*.userosx
+*.suo
+*.pdb
+*.cache
+*.vs
+*.nupkg
+*.log
