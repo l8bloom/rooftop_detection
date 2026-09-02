@@ -20,6 +20,6 @@ public class HealthEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.Equal("application/json", response.Content.Headers.ContentType.MediaType);
         var content = await response.Content.ReadAsStringAsync();
-        Assert.Contains("\"status\": \"healthy\"", content);
+        Assert.Contains("\"status\":\"healthy\"", content);
     }
 }
