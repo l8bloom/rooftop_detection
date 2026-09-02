@@ -1,0 +1,18 @@
+# Build artifacts
+/bin
+/obj
+
+# Tests
+/tests
+
+# IDE files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Git metadata
+**/.git
+
+# Node modules
+**/node_modules
