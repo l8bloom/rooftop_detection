@@ -1,0 +1,11 @@
+**/bin
+**/obj
+**/*.user
+**/*.suo
+**/*.sln
+**/*.csproj.user
+**/packages
+
+# IDE files
+*.vs
+*.vscode
