@@ -1,0 +1,13 @@
+bin
+obj
+**/*.user
+**/*.suo
+**/*.md
+**/*.log
+**/packages
+**/TestResults
+**/test_results
+**/coverage
+**/artifacts
+**/.vs
+**/.git
