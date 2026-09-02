@@ -1,0 +1,11 @@
+# Ignore build output
+bin/
+obj/
+# Publish output
+out/
+# Visual Studio files
+*.user
+*.suo
+*.sln.docstates
+# OS files
+.DS_Store
