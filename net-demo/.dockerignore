@@ -1,0 +1,14 @@
+# Ignore build output
+/bin
+/obj
+# Ignore tests and test results
+/tests
+**/TestResults
+# Ignore IDE files
+*.user
+*.suo
+*.sln
+*.csproj
+*.db
+# Ignore local files
+*.lock
