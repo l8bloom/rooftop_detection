@@ -1,0 +1,11 @@
+bin/
+obj/
+# Test output
+**/bin/
+**/obj/
+# IDE files
+*.user
+*.suo
+*.userprefs
+# OS files
+.DS_Store
