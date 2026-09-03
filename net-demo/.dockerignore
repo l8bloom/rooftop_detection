@@ -1,0 +1,16 @@
+bin/
+obj/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.sdf
+*.db
+*.bak
+*.log
+*.psd
+/.vs
+/.idea
+/.vscode
+*.tmp
+*.cache
