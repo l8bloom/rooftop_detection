@@ -73,7 +73,7 @@ docker compose up -d
 Verify the health endpoint:
 
 ```bash
-curl http://localhost:8080/health
+curl http://localhost:8080/api/health
 ```
 
 A successful response indicates the stack is running correctly.
