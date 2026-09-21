@@ -66,15 +66,14 @@ OpenAI Codex, including GPT-5.6 Terra, assisted with research, scaffolding, debu
 To start a local single-node stack that serves the API on port 8080, follow:
 
 ```bash
-# From the net-demo directory
-docker build -t rooftop-net-demo .
-docker run -p 8080:8080 rooftop-net-demo
+# From the repository root
+docker compose up -d
 ```
 
 Verify the health endpoint:
 
 ```bash
-curl http://localhost:8080/api/health
+curl http://localhost:8080/health
 ```
 
 A successful response indicates the stack is running correctly.
