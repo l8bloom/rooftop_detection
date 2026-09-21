@@ -60,3 +60,20 @@ uv run pytest -q
 ```
 
 OpenAI Codex, including GPT-5.6 Terra, assisted with research, scaffolding, debugging and review. Data-source selection, visual inspection, implementation decisions and final outputs were reviewed interactively rather than accepted without verification.
+
+## Local single-node stack
+
+To start a local single-node stack that serves the API on port 8080, follow:
+
+```bash
+# From the repository root
+docker compose up -d
+```
+
+Verify the health endpoint:
+
+```bash
+curl http://localhost:8080/api/health
+```
+
+A successful response indicates the stack is running correctly.
